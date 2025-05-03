@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.contactsapp.databinding.ActivityMainBinding;
@@ -33,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
                     // можно показать сообщение, что без разрешения ничего не будет
                 }
             });
+    private Contact lastCalledContact = null;
+    private final ActivityResultLauncher<String> callPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted && lastCalledContact != null) {
+                    onContactClicked(lastCalledContact); // повторим вызов
+                }
+            });
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,10 +74,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void onContactClicked(Contact contact) {
-        if (contact.number == null) return;
+        if (contact.number == null || contact.number.isEmpty()) return;
 
-        Intent intent = new Intent(Intent.ACTION_DIAL);
+        Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + contact.number));
-        startActivity(intent);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                == PackageManager.PERMISSION_GRANTED) {
+            startActivity(intent);
+        } else {
+            lastCalledContact = contact;
+            callPermissionLauncher.launch(Manifest.permission.CALL_PHONE);
+        }
     }
+
+
 }
