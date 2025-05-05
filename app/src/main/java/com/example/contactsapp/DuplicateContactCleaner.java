@@ -1,4 +1,3 @@
-// DuplicateContactCleaner.java
 package com.example.contactsapp;
 
 import android.content.ContentResolver;
