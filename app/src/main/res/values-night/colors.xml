@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="section_background">#121212</color> <!-- или #1C1C1E для чуть мягче -->
+    <color name="header_text">#c9c5ce</color> <!-- Белый текст -->
+    <color name="contact_name">#FFFFFF</color>     <!-- белый -->
+    <color name="contact_number">#BBBBBB</color>   <!-- светло-серый -->
+    <color name="card_background">#414141</color>
+    <color name="button_stroke">#DDDDDD</color> <!-- светлая обводка -->
+    <color name="ripple_color">#33FFFFFF</color> <!-- светлый полупрозрачный -->
+</resources>

@@ -2,6 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="section_background">#EEEEEE</color>
+    <color name="contact_name">#000000</color>     <!-- чёрный -->
+    <color name="contact_number">#666666</color>   <!-- тёмно-серый -->
+    <color name="header_text">#333333</color> <!-- Тёмно-серый -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="button_stroke">#333333</color> <!-- тёмно-серая обводка -->
+    <color name="ripple_color">#22000000</color> <!-- тёмный полупрозрачный -->
     <color name="avatar_color_0">#F44336</color> <!-- Red -->
     <color name="avatar_color_1">#E91E63</color> <!-- Pink -->
     <color name="avatar_color_2">#9C27B0</color> <!-- Purple -->

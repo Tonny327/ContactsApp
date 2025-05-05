@@ -3,8 +3,8 @@
     android:id="@+id/header_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#EEEEEE"
+    android:background="@color/section_background"
     android:textStyle="bold"
-    android:textColor="#333333"
+    android:textColor="@color/header_text"
     android:textSize="16sp"
     android:padding="8dp" />

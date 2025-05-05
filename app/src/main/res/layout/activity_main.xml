@@ -5,6 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/section_background"
+    android:paddingTop="?attr/actionBarSize"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -17,12 +19,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/delete_duplicates_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Удалить одинаковые контакты"
-        android:layout_margin="8dp"
+        android:textAllCaps="false"
+        android:layout_margin="16dp"
+        android:textColor="@color/contact_name"
+        app:cornerRadius="12dp"
+        app:backgroundTint="@color/card_background"
+        app:strokeColor="@color/button_stroke"
+        app:strokeWidth="1dp"
+        app:rippleColor="@color/ripple_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

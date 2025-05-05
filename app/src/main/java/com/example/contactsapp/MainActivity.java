@@ -3,7 +3,9 @@ package com.example.contactsapp;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -11,6 +13,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.contactsapp.databinding.ActivityMainBinding;
@@ -30,11 +34,15 @@ import android.content.Intent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-import me.zhanghai.android.fastscroll.FastScrollerBuilder;
-import androidx.appcompat.app.AlertDialog;
 
+import me.zhanghai.android.fastscroll.FastScrollerBuilder;
+
+import androidx.appcompat.app.AlertDialog;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -85,13 +93,34 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            getWindow().setDecorFitsSystemWindows(false);
+        } else {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            );
+        }
+        ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (view, insets) -> {
+            int bottomInset = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            ViewGroup.MarginLayoutParams params =
+                    (ViewGroup.MarginLayoutParams) binding.deleteDuplicatesButton.getLayoutParams();
+            params.bottomMargin = bottomInset + 24; // 24dp для отступа
+            binding.deleteDuplicatesButton.setLayoutParams(params);
+            return insets;
+        });
 
         // привязка Fast Scroll к RecyclerView
         new FastScrollerBuilder(binding.recycler).build();
@@ -101,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
         // Привязка к ContactService
         Intent serviceIntent = new Intent(this, ContactService.class);
         bindService(serviceIntent, serviceConnection, BIND_AUTO_CREATE);
-
 
         // RecyclerView
         binding.recycler.setLayoutManager(new LinearLayoutManager(this));
@@ -200,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
     }
-
 
 
 }

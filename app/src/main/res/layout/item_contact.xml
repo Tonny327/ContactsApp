@@ -35,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:text="Имя Контакта"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/contact_name"/>
 
             <TextView
                 android:id="@+id/number"
@@ -43,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="Номер"
                 android:textSize="14sp"
-                android:textColor="@android:color/darker_gray"/>
+                android:textColor="@color/contact_number"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
