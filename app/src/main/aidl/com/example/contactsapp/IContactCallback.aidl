@@ -1,4 +1,3 @@
-// IContactCallback.aidl
 package com.example.contactsapp;
 
 interface IContactCallback {
