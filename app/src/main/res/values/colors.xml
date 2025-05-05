@@ -9,6 +9,8 @@
     <color name="card_background">#FFFFFF</color>
     <color name="button_stroke">#333333</color> <!-- тёмно-серая обводка -->
     <color name="ripple_color">#22000000</color> <!-- тёмный полупрозрачный -->
+    <color name="toastBackground">#DD000000</color> <!-- почти чёрный с прозрачностью -->
+    <color name="toastTextColor">#FFFFFFFF</color> <!-- чисто белый -->
     <color name="avatar_color_0">#F44336</color> <!-- Red -->
     <color name="avatar_color_1">#E91E63</color> <!-- Pink -->
     <color name="avatar_color_2">#9C27B0</color> <!-- Purple -->

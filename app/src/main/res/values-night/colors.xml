@@ -7,4 +7,7 @@
     <color name="card_background">#414141</color>
     <color name="button_stroke">#DDDDDD</color> <!-- светлая обводка -->
     <color name="ripple_color">#33FFFFFF</color> <!-- светлый полупрозрачный -->
+    <color name="toastBackground">#DDEEEEEE</color> <!-- почти белый с прозрачностью -->
+    <color name="toastTextColor">#FF000000</color> <!-- чисто чёрный -->
+
 </resources>
