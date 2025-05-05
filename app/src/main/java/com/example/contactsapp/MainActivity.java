@@ -32,7 +32,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import me.zhanghai.android.fastscroll.FastScrollerBuilder;
 import androidx.appcompat.app.AlertDialog;
 
 
@@ -93,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // привязка Fast Scroll к RecyclerView
+        new FastScrollerBuilder(binding.recycler).build();
+
+        binding.recycler.setLayoutManager(new LinearLayoutManager(this));
+        binding.recycler.setAdapter(new ContactsAdapter(this::onContactClicked));
         // Привязка к ContactService
         Intent serviceIntent = new Intent(this, ContactService.class);
         bindService(serviceIntent, serviceConnection, BIND_AUTO_CREATE);

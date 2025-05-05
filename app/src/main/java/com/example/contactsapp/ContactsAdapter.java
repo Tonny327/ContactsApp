@@ -3,6 +3,7 @@ package com.example.contactsapp;
 import android.net.Uri;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,8 @@ import com.example.contactsapp.databinding.ItemContactBinding;
 import java.util.Objects;
 
 
-public class ContactsAdapter extends ListAdapter<ListItem, RecyclerView.ViewHolder> {
+public class ContactsAdapter extends ListAdapter<ListItem, RecyclerView.ViewHolder>
+        implements me.zhanghai.android.fastscroll.PopupTextProvider {
 
     public interface ClickListener {
         void onContactClick(Contact contact);
@@ -123,6 +125,21 @@ public class ContactsAdapter extends ListAdapter<ListItem, RecyclerView.ViewHold
             return oldItem.equals(newItem);
         }
     };
+    @Override
+    public String getPopupText(@NonNull View view, int position) {
+        ListItem item = getItem(position);
+        if (item instanceof HeaderItem) {
+            return ((HeaderItem) item).getTitle();
+        } else if (item instanceof Contact) {
+            String name = ((Contact) item).name;
+            return name != null && !name.isEmpty()
+                    ? name.substring(0, 1).toUpperCase()
+                    : "#";
+        }
+        return "#";
+    }
+
+
 
 }
 
