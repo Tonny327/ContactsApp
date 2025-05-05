@@ -30,20 +30,14 @@
 
 - Java 8
 - Android SDK
-- RecyclerView
-- ViewBinding
-- DiffUtil
+- RecyclerView, DiffUtil, ViewBinding
 - AIDL (межпроцессное взаимодействие)
-- ActivityResult API
-- Runtime permissions
-- Custom Toast (для централизованных уведомлений)
-- Glide
-- Custom Drawable (инициал-аватары)
+- ActivityResult API, Runtime Permissions
+- Glide, Custom Drawable (инициал-аватары)
 - Material Components (MaterialButton, ripple, темы)
 - WindowInsets API (прозрачный статус-бар, безопасная зона кнопки)
-- JUnit 4
-- AndroidX Test (Instrumentation)
-- Mockito (unit-тесты)
+- JUnit 4, Mockito, Robolectric
+- AndroidX Test (JUnit + Espresso, Instrumentation)
 
 ## 🛠 Запуск
 
@@ -90,12 +84,30 @@
 
 ### Запуск Android-теста
 
-Запуск на физическом устройсте:
+Запуск на физическом устройстве:
 
 ```bash
 ./gradlew connectedDebugAndroidTest -x uninstallAll -x installDebug
 ```
 ## 📸 Скриншоты
+
+###  Тёмная тема
+<img src="screenshots/dark_mode.png" width="300"/>
+
+###  Fast Scroll светлая тема
+<img src="screenshots/fast_scroll_light.png" width="300"/>
+
+###  Группировка по буквам (и без имени → #)
+<img src="screenshots/grouped_contacts.png" width="300"/>
+
+###  Fast Scroll темная тема
+<img src="screenshots/fast_scroll_night.png" width="300"/>
+
+###  Удаление дубликатов
+<img src="screenshots/toast.png" width="300"/>
+
+###  Главный экран
+<img src="screenshots/main_screen.png" width="300"/>
 
 
 ## 🧾 Завершённые задачи
