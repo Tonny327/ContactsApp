@@ -1,6 +1,7 @@
 package com.example.contactsapp;
 
 import android.net.Uri;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.contactsapp.databinding.ItemContactBinding;
 
 import java.util.Objects;
@@ -77,13 +79,27 @@ public class ContactsAdapter extends ListAdapter<ListItem, RecyclerView.ViewHold
             Contact contact = (Contact) item;
             ContactVH holder = (ContactVH) vh;
 
+            int avatarSize = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    48, // размер в dp
+                    holder.b.photo.getResources().getDisplayMetrics()
+            );
+
+
             holder.b.name.setText(contact.name);
             holder.b.number.setText(contact.number != null ? contact.number : "Нет номера");
 
             if (contact.photoUri != null) {
-                holder.b.photo.setImageURI(contact.photoUri);
+                Glide.with(holder.b.photo.getContext())
+                        .load(contact.photoUri)
+                        .placeholder(TextDrawableUtil.createAvatar(holder.b.photo.getContext(), contact.name, avatarSize))
+                        .error(TextDrawableUtil.createAvatar(holder.b.photo.getContext(), contact.name, avatarSize))
+                        .circleCrop()
+                        .into(holder.b.photo);
             } else {
-                holder.b.photo.setImageResource(android.R.drawable.sym_def_app_icon);
+                holder.b.photo.setImageDrawable(
+                        TextDrawableUtil.createAvatar(holder.b.photo.getContext(), contact.name, avatarSize)
+                );
             }
 
             holder.itemView.setOnClickListener(v -> clickListener.onContactClick(contact));

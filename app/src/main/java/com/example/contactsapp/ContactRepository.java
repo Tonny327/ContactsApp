@@ -82,6 +82,9 @@ public class ContactRepository {
                     ? "#" : normalizeKey(c.name);
             grouped.computeIfAbsent(key, k -> new ArrayList<>()).add(c);
         }
+        for (Map.Entry<String, List<Contact>> entry : grouped.entrySet()) {
+            entry.getValue().sort(Comparator.comparing(c -> c.name.toLowerCase()));
+        }
 
         List<ListItem> result = new ArrayList<>();
         for (Map.Entry<String, List<Contact>> entry : grouped.entrySet()) {
