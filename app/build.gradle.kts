@@ -66,8 +66,10 @@ dependencies {
 
     // Тесты (можно оставить как есть)
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test:core:1.5.0") // нужен для ApplicationProvider
+    androidTestImplementation("androidx.test:runner:1.5.2") // нужен для запуска
     testImplementation("org.mockito:mockito-core:5.2.0")
     testImplementation("org.mockito:mockito-inline:5.2.0")
     testImplementation("org.robolectric:robolectric:4.11.1")
